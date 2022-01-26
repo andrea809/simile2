@@ -1,6 +1,8 @@
 /* Copyright 2021 freecodeformat.com */
 package domain;
 
+import com.opencsv.bean.CsvRecurse;
+
 import java.util.Date;
 import java.util.List;
 
@@ -9,8 +11,11 @@ public class Data {
 
     private String _id;
     private List<String> photos;
+    @CsvRecurse
     private Position position;
+    @CsvRecurse
     private Weather weather;
+    @CsvRecurse
     private Details details;
     private Date createdAt;
     private Date updatedAt;

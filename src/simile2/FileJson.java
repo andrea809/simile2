@@ -1,7 +1,7 @@
 package simile2;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.google.gson.Gson;
+import domain.Data;
 import json.JSONArray;
 import json.JSONException;
 import json.JSONObject;
@@ -9,6 +9,7 @@ import json.JSONObject;
 import java.io.*;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 
 public class FileJson {
     private JSONObject jsonObject;
@@ -18,7 +19,7 @@ public class FileJson {
         } catch (IOException e) {
             System.out.println("IOException");
         }
-        prova();
+        getData();
     }
     private String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
@@ -39,12 +40,12 @@ public class FileJson {
             input.close();
         }
     }
-    private void prova() {
-        //System.out.println(jsonObject.toString());
+    public ArrayList<Data> getData() {
+        Gson gson = new Gson();
+        ArrayList<Data> data = new ArrayList<Data>();
         JSONArray array = jsonObject.getJSONArray("data");
-        for ( Object object : array) {
-            JSONObject tmp = (JSONObject) object;
-            
-        }
+        for ( int i=0; i<array.length(); i++)
+            data.add(gson.fromJson(array.getJSONObject(i).toString(), Data.class));
+        return data;
     }
 }
