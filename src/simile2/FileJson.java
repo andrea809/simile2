@@ -44,7 +44,7 @@ public class FileJson {
         JSONArray array = jsonObject.getJSONArray("data");
         for ( Object object : array) {
             JSONObject tmp = (JSONObject) object;
-            System.out.println(tmp.isNull("details"));
+            
         }
     }
 }
