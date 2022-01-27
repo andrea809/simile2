@@ -2,10 +2,7 @@ package simile2;
 
 import com.google.gson.Gson;
 import domain.Data;
-import json.JSONArray;
-import json.JSONException;
-import json.JSONObject;
-
+import org.json.*;
 import java.io.*;
 import java.net.URL;
 import java.nio.charset.Charset;
