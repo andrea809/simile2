@@ -14,7 +14,7 @@ public class FileJson {
         try {
             jsonObject = readJsonFromUrl(url);
         } catch (IOException e) {
-            System.out.println("IOException");
+            System.out.println("Nessuna Connessione a Internet");
         }
         getData();
     }
@@ -40,9 +40,13 @@ public class FileJson {
     public ArrayList<Data> getData() {
         Gson gson = new Gson();
         ArrayList<Data> data = new ArrayList<Data>();
-        JSONArray array = jsonObject.getJSONArray("data");
-        for ( int i=0; i<array.length(); i++)
-            data.add(gson.fromJson(array.getJSONObject(i).toString(), Data.class));
-        return data;
+        try {
+            JSONArray array = jsonObject.getJSONArray("data");
+            for (int i = 0; i < array.length(); i++)
+                data.add(gson.fromJson(array.getJSONObject(i).toString(), Data.class));
+            return data;
+        } catch (NullPointerException e) {
+            return null;
+        }
     }
 }
